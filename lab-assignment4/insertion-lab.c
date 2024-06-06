@@ -18,13 +18,36 @@ int main()
         exit(0);
     }
     
-    //insert your code here
-    
-    
-    
-    
-    
-    
+    while(fscanf(fp, "%d", arr[count]) == 1){
+        count++;
+    }
+    fclose(fp);
+
+    for(i = 1; i < count; i++){
+        temp = arr[i];
+        j = i - 1;
+        while(j >= 0 && arr[j] > temp){
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = temp;
+    }
+
+    printf("Sorted Array: ");
+    for(i = 0; i < count; i++){
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    FILE *fp2 = fopen("Output.txt", "w");
+    if(fp2==NULL){
+        printf("\n Cannot create the file \n");
+        exit(0);
+    }
+    for(i = 0; i < count; i++){
+        fprintf(fp2, "%d ", arr[i]);
+    }
+    fclose(fp2);
     
     return 0;
 }
