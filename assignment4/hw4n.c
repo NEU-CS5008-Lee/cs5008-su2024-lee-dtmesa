@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Dylan Mesa
+// email: mesa.d@northeastern.edu
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
