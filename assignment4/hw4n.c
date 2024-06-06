@@ -36,9 +36,19 @@ void selection_sort_2arr(int* source, int* dest, bool* valid)
   int smallest;      // current smallest element
 
   for (int i=0; i<LIMIT; i++) {
-
-  // INSERT YOUR CODE HERE
-
+	for(int k = 0; k < LIMIT; k++){
+        if(valid[k] == true){
+            smallest = k;
+            break;
+        }
+    }
+    for (int j = 0; j < LIMIT; j++){
+        if(source[smallest] > source[j] && valid[j] == true){
+            smallest = j;
+        }
+    }
+    dest[i] = source[smallest];
+    valid[smallest] = false;
   }
 }
 
@@ -48,10 +58,16 @@ void selection_sort_1arr(int* source)
   int smallest;      // current smallest element
   int temp;          // temporary for swap
 
-  for (int i=0; i<LIMIT; i++) {
-
-  // INSERT YOUR CODE HERE
-
+  for (int i=0; i<LIMIT-1; i++) {
+	smallest = i;
+        for (int j = i + 1; j < LIMIT; j++){
+            if(source[smallest] > source[j]){
+                smallest = j;
+            }
+        }
+        temp = source[i];
+        source[i] = source[smallest];
+        source[smallest] = temp;
   }
 }
 
