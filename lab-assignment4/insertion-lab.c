@@ -1,5 +1,5 @@
-//enter your name here
-//enter your email here
+//Dylan Mesa
+//mesa.d@northeastern.edu
 //To perform insertion sort of integers stored in a file and display the output and store it in another file.
 #include <stdio.h>
 #include<stdlib.h>
