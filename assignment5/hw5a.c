@@ -38,8 +38,19 @@ void mergeIt(
 	   int rightStart,
 	   int rightStop) {
   
+  int smallest, temp, i, j;
 
-  // ADD YOUR CODE HERE
+  for (i=0; i<rightStop; i++) {
+    smallest = i;
+    for (j = i + 1; j < LIMIT; j++){
+      if(data[smallest] > data[j]){
+        smallest = j;
+      }
+    }
+    temp = data[i];
+    data[i] = data[smallest];
+    data[smallest] = temp;
+  }
   
   return;
 }
