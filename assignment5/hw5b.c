@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Dylan Mesa
+// email: mesa.d@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,9 +34,40 @@ char upperChar(char c){
 
 
 // pick pivot and then sort small and big parts 
+
+//helper method
+int quickySwapper(char* data, int left, int right){
+	
+  int i;
+  int j = left;
+  char pivot = data[right];
+  char temp;
+
+  for(i = left; i < right; i++){
+    if(upperChar(data[i]) <= upperChar(pivot)){
+      temp = data[i];
+      data[i] = data[j];
+      data[j] = temp;
+      j++;
+    }
+  }
+
+  temp = data[j];
+  data[j] = data[right];
+  data[right] = temp;
+  
+  return j;
+}
+
 void quicky(char* data, int left, int right) {
 
-  // ADD YOUR CODE HERE
+  int i;
+  
+  if(left < right){
+    i = quickySwapper(data, left, right);
+    quicky(data, left, i - 1);
+    quicky(data, i + 1, right);
+  }
 
   return;
 }
