@@ -1,5 +1,5 @@
-/*---enter your name here----*/
-/*---enter your email here-----*/
+// name: Dylan Mesa
+// email: mesa.d@northeastern.edu
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -38,7 +38,7 @@ Tree* initTree(){
      exit(1);
  }
     t->root=NULL;
-    
+
     return t;
 }
 
@@ -103,7 +103,7 @@ node_t* RightRotate(node_t *z){
 
 /* function to display the preorder traversal of AVL tree */
 void preorder(node_t *temp){
-    
+
     if(temp!=NULL)
     {
         printf("%d\n",temp->data);
@@ -128,14 +128,26 @@ void freenode(node_t *p){
    a AVL tree using four cases*/
 node_t* Insert(node_t* root, int data)
 {
-    
-    
-    //insert your code here
-
+    //base case
+    if(root == NULL){
+        return NewNode(data);
+    }
+    //duplicate stays
+    if(root->data == data){
+        return root;
+    }
+    //lesser goes left
+    else if(root->data > data){
+        root->left = Insert(root->left, data);
+    }
+    //larger goes right
+    else{
+        root->right = Insert(root->right, data);
+    }
 
     /*updating the height after insertion of the node*/
     root->height = max(height(root->left),height(root->right))+1;
-    
+
     /*checking the balance factor to check the tree is balanced */
     int balance = Balance(root);
 
