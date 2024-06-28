@@ -98,7 +98,93 @@ int main () {
 	    break;
 
 
-	  // ADD YOUR CODE HERE
+	case S1:
+      	if(strlen(temp) >= 60){
+        state = ACCEPTSTATE;
+     	 }
+      	else if (isDigit(inputLine[nextChar])) {
+          state = S1;
+          appendChar(temp, inputLine[nextChar]);
+          strcpy(cityStr,"");
+        } else if(inputLine[nextChar] == ','){
+          state = S2;
+        } else {
+          state = ERRORSTATE;
+        }
+        break;
+
+    case S2:
+      if(strlen(temp) >= 60){
+        state = ACCEPTSTATE;
+      }
+      else if(inputLine[nextChar] == '"') {
+          state = S3;
+          appendChar(temp, inputLine[nextChar]);
+      } else {
+        state = ERRORSTATE;
+      }
+      break;
+
+    case S3:
+      if(strlen(temp) >= 60){
+        state = ACCEPTSTATE;
+      }
+      else if(strlen(cityStr) >= 30 && inputLine[nextChar] != '"'){
+        state = S3;
+        appendChar(temp, inputLine[nextChar]);
+      }
+      else if(inputLine[nextChar] != '"') {
+          state = S3;
+          appendChar(temp, inputLine[nextChar]);
+          appendChar(cityStr, inputLine[nextChar]);
+      } else if(inputLine[nextChar] == '"'){
+          state = S4;
+          appendChar(temp, inputLine[nextChar]);
+      } else {
+        state = ERRORSTATE;
+      }
+      break;
+
+    case S4:
+      if(strlen(temp) >= 60){
+        state = ACCEPTSTATE;
+      }
+      else if(inputLine[nextChar] == ','){
+          state = S5;
+          popInt = 0;
+          strcpy(temp,"");
+      } else {
+        state = ERRORSTATE;
+      }
+      break;
+
+    case S5:
+      if(inputLine[nextChar] == '"'){
+            state = S6;
+      } 
+      else if(inputLine[nextChar] == '('){
+              state = ACCEPTSTATE;
+      } else {
+          state = ERRORSTATE;
+        }
+      break;
+
+    case S6:
+      if (isDigit(inputLine[nextChar])) {
+            state = S6;
+            appendChar(temp, inputLine[nextChar]);
+      } 
+      else if(inputLine[nextChar] == ','){
+        state = S6;
+      }
+      else if(inputLine[nextChar] == '"'){
+              state = ACCEPTSTATE;
+              popInt = atoi(temp);
+      }
+       else {
+            state = ERRORSTATE;
+          }
+      break;
  
 	    
 	  case ACCEPTSTATE:
