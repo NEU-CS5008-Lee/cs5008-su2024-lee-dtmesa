@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Dylan Mesa
+// email: mesa.d@northeastern.edu
 
 
 #include <stdio.h>
@@ -214,7 +214,7 @@ int main () {
   int current;
   bool done[GSIZE];   // are we done with this node?
 
-  // initialize finsihed to false - not done with any node yet
+  // initialize finished to false - not done with any node yet
   for (i=0; i<GSIZE; i++) {
     done[i] = false;
   }
@@ -223,13 +223,19 @@ int main () {
   printGraphAsList(E,GSIZE);
 
   // add start node to work queue
-  enqueue(q,0);
-
+  enqueue(q, 0);
+  done[0] = true;
   printf("\nBREADTH FIRST TRAFERSAL\n");
   while (!isEmpty(q)) {
+    current = dequeue(q);
+    printf("NODE: %d\n", current);
 
-    // INSERT YOUR CODE HERE
-    
+    for(i = 0; i < GSIZE; i++){
+      if(E[current][i] == true && !done[i]){
+        done[i] = 1;
+        enqueue(q, i);
+      }
+    }
   }
 
   // print out nodes that are unreachable
